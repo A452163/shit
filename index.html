@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王者荣耀英雄展示</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            min-height: 100vh;
+        }
+        .left-container {
+            width: 50%;
+            padding-right: 20px;
+        }
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .hero-card {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .hero-name {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            z-index: 2;
+            padding: 8px 15px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+        .hero-card:hover .hero-name {
+            background-color: rgba(255,215,0,0.8);
+            color: black;
+        }
+        .hero-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .light-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,215,0,0.3), rgba(255,255,255,0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .right-container {
+            width: 50%;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 20px;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 640px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .video-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            padding: 16px 20px;
+            background-color: #f9f9f9;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .video-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: #f9f9f9;
+        }
+        .video-controls button {
+            background-color: transparent;
+            border: none;
+            color: #000000;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .video-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e0e0e0;
+            position: relative;
+            cursor: pointer;
+        }
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #0078d4;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .left-container, .right-container {
+                width: 100%;
+                padding: 0;
+            }
+            .hero-card {
+                height: 200px;
+            }
+            .right-container {
+                margin-top: 20px;
+            }
+            .video-container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-container">
+        <div class="image-container">
+            <div class="hero-card">
+                <img src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/166/166-bigskin-1.jpg" alt="亚瑟">
+                <div class="hero-name">亚瑟</div>
+                <div class="light-overlay"></div>
+            </div>
+            <div class="hero-card">
+                <img src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/107/107-bigskin-1.jpg" alt="赵云">
+                <div class="hero-name">赵云</div>
+                <div class="light-overlay"></div>
+            </div>
+            <div class="hero-card">
+                <img src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/142/142-bigskin-1.jpg" alt="安琪拉">
+                <div class="hero-name">安琪拉</div>
+                <div class="light-overlay"></div>
+            </div>
+            <div class="hero-card">
+                <img src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/131/131-bigskin-1.jpg" alt="李白">
+                <div class="hero-name">李白</div>
+                <div class="light-overlay"></div>
+            </div>
+            <div class="hero-card">
+                <img src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/157/157-bigskin-1.jpg" alt="不知火舞">
+                <div class="hero-name">不知火舞</div>
+                <div class="light-overlay"></div>
+            </div>
+            <div class="hero-card">
+                <img src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/154/154-bigskin-1.jpg" alt="花木兰">
+                <div class="hero-name">花木兰</div>
+                <div class="light-overlay"></div>
+            </div>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="video-container">
+            <div class="video-title">王者荣耀精彩视频</div>
+            <video id="myVideo" controls preload="metadata">
+                <source src="https://cdn3.easylink.cc/mp4_avthumb_8cloyx_FxS_Full_1080_WM_h264.mp4?e=1729339140&token=J_WyMIdhZtwb0E0QHWRqEfQrd5lVSWLffl9QxaxP:EP3ltqm04xDtbIpeWXGF4rxZbI0=" type="video/mp4">
+                您的浏览器不支持 HTML5 视频。
+            </video>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="video-controls">
+                <button id="playPauseBtn">播放</button>
+                <button id="fullscreenBtn">全屏</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('myVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const progressBar = document.querySelector('.progress-bar');
+        const progress = document.getElementById('progress');
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        video.addEventListener('timeupdate', updateProgress);
+        progressBar.addEventListener('click', seek);
+
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = '暂';
+            } else {
+                video.pause();
+                playPauseBtn.textContent = '播放';
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                video.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function updateProgress() {
+            const percentage = (video.currentTime / video.duration) * 100;
+            progress.style.width = `${percentage}%`;
+        }
+
+        function seek(e) {
+            const pos = (e.pageX - progressBar.offsetLeft) / progressBar.offsetWidth;
+            video.currentTime = pos * video.duration;
+        }
+    </script>
+</body>
+</html>
